@@ -1,4 +1,5 @@
 #include<iostream>
+#include <vector>
 #include<algorithm>
 
 using namespace std;
@@ -53,12 +54,53 @@ void QuickSort(int data[], int length, int start, int end)
         QuickSort(data, length, index + 1, end);
 }
 
+// 另一种递归方法，感觉这一种比较次数比较少
+int Partition_effective(vector<int>& data, int start, int end)
+{
+    int i = start, j = end, x = data[start];
+
+    while (i < j)
+    {
+        while (i < j && data[j] >= x)
+            -- j;
+        if (i < j)
+            data[i ++] = data[j];
+
+        while (i < j && data[i] <= x)
+            ++ i;
+        if (i < j)
+            data[j --] = data[i];
+    }
+
+    data[i] = x;
+
+    return i;
+}
+
+void QuickSort(vector<int>& data, int start, int end)
+{
+    if (start < end)
+    {
+        int index = Partition_effective(data, start, end);
+        QuickSort(data, start, index-1);
+        QuickSort(data, index+1, end);
+    }
+}
+
 int main(int argc, char const *argv[]) {
     int arr[] = {13, 12, 3, 4, 9, 7};
 
     QuickSort(arr, 6, 0, 5);
+    for (int i = 0; i < 6; ++ i)
+        cout << arr[i] << '\t';
+    cout << endl;
 
-    cout << arr[0] << ", " << arr[1] << ", " << arr[2] << endl;
+    vector<int> data(arr, arr+6);
+    QuickSort(data, 0, 5);
+    
+    for (int i = 0; i < 6; ++ i)
+        cout << data[i] << '\t';
+    cout << endl;
 
     return 0;
 }

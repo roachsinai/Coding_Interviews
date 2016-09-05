@@ -29,7 +29,7 @@ public:
     unsigned int GetFirstBitIs1(int num)
     {
         unsigned int indexBit = 0;
-        while ( (num & 1 == 0) && indexBit < 8 * sizeof(int))
+        while ( ( (num & 1) == 0) && indexBit < 8 * sizeof(int))
         {
             num = num >> 1;
             ++ indexBit;
@@ -47,12 +47,16 @@ public:
 
 int main(int argc, char const *argv[])
 {
-    Solution s;
-    int a = 12;
-    int b = 5;
-    a &= b;
-
     // << 优先级 高于 ^
     cout << (3 ^ 1) << endl;
+
+    Solution s;
+    int num1, num2;
+
+    int arr[] = {2,4,3,6,3,2,5,5};
+    vector<int> v(arr, arr+8);
+
+    s.FindNumsAppearOnce(v, &num1, &num2);
+    cout << num1 << '\t' << num2 << endl;
     return 0;
 }

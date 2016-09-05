@@ -1,0 +1,69 @@
+// 判断一个数字是不是回文
+// 小于0不是
+// 12321 是
+
+bool isPlalindrome(int num)
+{
+    if (num < 0)
+        return false;
+
+    int rev = 0, x = num;
+
+    while (x != 0)
+    {
+        rev = rev * 10 + x % 10;
+        x /= 10;
+    }
+
+    return (rev == num);
+}
+
+// 但是如果 num = 1000000003，那么 得到rev的时候会溢出
+
+bool isPlalindrome(int num)
+{
+    if (num < 0)
+        return false;
+
+    int div = 1;
+    // 得到 num 的最高位
+    while (num / div >= 10)
+        div *= 10;
+
+    while (num != 0)
+    {
+        int l = num / div;
+        int r = num % 10;
+        if (l != r)
+            return false;
+
+        num = (num % div) / 10;
+        div /= 100;
+    }
+
+    return 0;
+}
+
+// 递归解法（如果额外的栈空间不算额外空间）。
+bool isPalindrome(int x, int &y)
+{
+    if (x < 0)
+        return false;
+    if (x == 0)
+        return true;
+    if (isPalindrome(x / 10, y) && (x % 10 == y % 10)) {
+        y /= 10;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool isPalindrome(int x)
+{
+    return isPalindrome(x, x);
+}
+
+
+// References
+// https://github.com/xiangzhai/leetcode/blob/master/question/palindrome-number.md

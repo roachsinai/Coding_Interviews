@@ -17,7 +17,7 @@ void MergeArray(int a[], int start, int mid, int end, int temp[])
 
     while (start <= mid && t <= end)
     {
-        if (a[start] < a[t])
+        if (a[start] <= a[t])
             temp[i++] = a[start++];
         else
             temp[i++] = a[t++];

@@ -6,4 +6,4 @@
 |希尔排序|O(nlog^2n)最快|||不稳定|
 |选择排序|O(n^2)|O(n^2)||不稳定|
 |快速排序|O(nlogn)|O(nlogn)|O(logn)|不稳定|
-|堆排序|O(nlogn)|O(nlogn)||不稳定|
+|堆排序|O(nlogn)|O(nlogn)|O(1)|不稳定|

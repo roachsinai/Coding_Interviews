@@ -72,6 +72,7 @@ void linkInsert(Node*& head)
 
     Node* to_insert = new Node(x);
 
+    // 双向链表为空
     if (head == NULL)
     {
         head = to_insert;
@@ -79,6 +80,15 @@ void linkInsert(Node*& head)
     }
 
     Node* p = head;
+    // 待插入值大于 双向链表中的最大值
+    if (x > p->val)
+    {
+        to_insert->right = p;
+        p->left = to_insert;
+
+        head = to_insert;
+    }
+
     while (p->right != NULL)
     {
         if (p->val >= x)

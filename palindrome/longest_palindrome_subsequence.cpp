@@ -1,4 +1,6 @@
-// 求一个字符串中的最长回文字符序列的长度
+// 求一个字符串中的最长回文子序列的长度
+// if (s[i] == s[j]) dp[i][j] = dp[i+1][j-1] + 2;
+// if (s[i] != s[j]) dp[i][j] = max(dp[i+1, j], dp[i][j-1])
 
 #include <iostream>
 #include <string>
@@ -18,25 +20,17 @@ int longestPalindromeSubSequence(string s)
     memset(dp,0,sizeof(dp));
     for(int i=0; i<n; i++)
         dp[i][i] = 1;
-        
-    // i 表示 当前长度为 i+1的 子序列
-    for(int i=1; i<n; i++)
-    {
-        tmp = 0;
-        //考虑所有连续的长度为i+1的子串. 该串为 str[j, j+i]
-        for(int j=0; j+i<n; j++)
-        {
-            //如果首尾相同
-            if(s[j] == s[j+i])
-            {
-                tmp = dp[j+1][j+i-1] + 2;
-            }
-            else
-                tmp = max(dp[j+1][j+i],dp[j][j+i-1]);
 
-            dp[j][j+i] = tmp;
+    // len 子序列的长度
+    for(int len = 2; len <= n; ++ len)
+        for(int i = 0; i+len < n; ++ i)
+        {
+            if (s[i] == s[i+len-1])
+                dp[i][i+len-1] = dp[i+1][i+len-2] + 2;
+            else
+                dp[i][i+len-1] = max(dp[i+1][i+len-1], dp[i][i+len-2]);
         }
-    }
+
     //返回串 str[0][n-1] 的结果
     return dp[0][n-1];
 }

@@ -13,8 +13,11 @@
 // 1.                                 i == j
 // 2. str[i]==str[j],                 j-i = 1
 // 3. str[i]==str[j] && dp[i+1][j-1], i-j > 1
+// 从递推公式可以看出来，在计算 dp 矩阵的时候，需要先判断长度短的子串是不是回文
+// 所以外层循环是，子串的长度，内层是字串开始位置
+// 前提：dp[i][i] = true; dp[i][i+1] = (s[i] == s[i+1])
 
-//
+// Manacher's Algorithm
 
 #include <iostream>
 #include <string>
@@ -24,22 +27,27 @@ using namespace std;
 string longestPalindrome(string s)
 {
     const int n = s.size();
-    bool bp[n][n];
+    bool dp[n][n];
     fill_n(&dp[0][0], n*n, false);
+
+    for (int i = 0; i < n-1; ++ i)
+    {
+        dp[i][i] = true;
+        dp[i][i+1] = (s[i] == s[i+1]);
+    }
+    dp[n-1][n-1] = true;
 
     int max_len = 1; // 保存最长回文子串长度
     int start = 0;   // 最长回文子串起点
 
-    for (int j = 0; j < n; ++ j)
-        for (int i = 0; i < n; ++ i)
+    for (int len = 3; len <= n; ++ len)
+        for (int i = 0; i+len < n; ++ i)
         {
-            if (j-i < 2)
-                dp[i][j] = (s[i] == s[j]);
-            else
-                dp[i][j] = ( dp[i][j] && s[i]==s[j]);
-            if (dp[i][j] && max_len < (j-i+1))
+            dp[i][j] = ( dp[i+1][j-1] && s[i]==s[j]);
+
+            if (dp[i][j] && max_len < len)
             {
-                max_len = j-i+1;
+                max_len = len;
                 start = i;
             }
         }

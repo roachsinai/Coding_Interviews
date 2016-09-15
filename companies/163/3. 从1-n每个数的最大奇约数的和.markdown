@@ -1,0 +1,51 @@
+思路：只需要知道一点，奇数的最大奇约数就是它本身
+
+如果，一个数是偶数，那就除二知道变成奇数为止。当然，其实可以进行优化。
+
+`1,2,3...24`的奇约数和，可以先求`1-13`的奇数和，再求`2,4,6...24`每项比`2`之后的和，类似递归也可以`while`实现。
+
+`code:`
+
+```
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+// 1到last之间的奇数和
+long long odd_sum(int last)
+{
+	long long ll_odd = last;
+	return (ll_odd+1) * (ll_odd+1) / 4;
+}
+
+int main()
+{
+	int n;
+	cin >> n;
+
+	long long sum = 0;
+	int tmp;
+
+	while (true)
+	{
+		if (n == 1)
+		{
+			sum += 1;
+			break;
+		}
+
+		if (n%2 == 0)
+			sum += odd_sum(n-1);
+		else
+			sum += odd_sum(n);
+
+		n /= 2;
+	}
+
+	cout << sum << endl;
+
+	return 0;
+}
+```

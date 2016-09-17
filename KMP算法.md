@@ -56,7 +56,7 @@ void get_next(const char P[], int next[])
     int q; // 待匹配字符串的下标
     int k; // 最大相同前后缀长度，初始化为0
     int m = strlen(P); // 待匹配字符串的长度
-    
+
     next[0] = 0; // 单字符的前后缀均为空，所以长度为0
     for (q = 1, k = 0; q < m; ++ q)
     {
@@ -64,9 +64,66 @@ void get_next(const char P[], int next[])
             k = next[k-1];
         if (P[q] == P[k])
             ++ k;
-        
+
         next[q] = k;
     }
+}
+```
+
+`completed code:`
+
+```
+#include <iostream>
+#include <string>
+#include <cstring>
+
+using namespace std;
+
+void get_next(const string& sub_str, int next[])
+{
+    int q; // 待匹配字符串下标
+    int k; // 前后缀最长公共元素长度
+    next[0] = 0;
+
+    for (q = 1, k = 0; q < sub_str.size(); ++ q)
+    {
+        while (k > 0 && sub_str[q] != sub_str[k])
+            k = next[k-1];
+
+        if (sub_str[q] == sub_str[k])
+            ++ k;
+
+        next[q] = k;
+    }
+}
+
+void KMP(const string& str, const string& sub_str, int next[])
+{
+
+    for (int i = 0, j = 0; i < str.size(); ++ i)
+    {
+        while (j > 0 && str[i] != sub_str[j])
+            j = next[j-1];
+
+        if (str[i] == sub_str[j])
+            ++ j;
+
+        if (j == sub_str.size())
+            cout << "pattern begin from index " << i-j+1 << endl;
+        }
+}
+
+int main(){
+    string str("ababxbababcadfdsss");
+    string sub_str("abcadfd");
+
+    int* next = new int[sub_str.size()];
+    memset(next, 0, sizeof(next));
+    get_next(sub_str, next);
+
+    KMP(str, sub_str, next);
+
+    return 0;
 }
 ```
 

@@ -26,12 +26,12 @@ int main()
         height[i] = x;
     }
     vector<int>::iterator highest = max_element(height.begin(), height.end());
-    
+
     // 旋转数组，使得高度最高的烽火台，放在第一个位置
     vector<int> num(highest, height.end());
     num.reserve(n);
     copy(height.begin(), highest, num.end());
-    
+
     // left[i] is the nearest bigger number in the left of num[i]
     vector<int> left(n, -1);
     for (int i = 1; i < n; ++ i)
@@ -41,37 +41,37 @@ int main()
             p = left[p];
         left[i] = num[i] == num[p] ? left[p] : p;
     }
-    
-    //right[i] is the nearest bigger number in the right of num[i]  
-    //same[i] is the number of the number equal to num[i] in [i, right[i]]  
+
+    //right[i] is the nearest bigger number in the right of num[i]
+    //same[i] is the number of the number equal to num[i] in [i, right[i]]
     vector<int> right(n, n);
     vector<int> same(n, 0);
-    for (int i = n-2; i >= 0; ++ i)
+    for (int i = n-2; i >= 0; -- i)
     {
         int p = i + 1;
         while (p < n && num[i] > num[p])
             p = right[p];
-        
+
         if (p >= n)
         {
             right[i] = p;
             continue;
         }
-        
+
         right[i] = num[i] == num[p] ? right[p] : p;
         same[i] = num[i] == num[p] ? same[i] + 1 : 0;
-            
+
     }
-    
-    long long ans = 0;  
-    for (int i = 0; i < n; ++ i) {  
-        if (left[i] >= 0) ans += 1;  
-        if (right[i] < n) ans += 1;  
+
+    long long ans = 0;
+    for (int i = 0; i < n; ++ i) {
+        if (left[i] >= 0) ans += 1;
+        if (right[i] < n) ans += 1;
         if (right[i] >= n && left[i] > 0) ans += 1; // 最后一个元素肯定可以看见第一个元素
-        ans += same[i];  
+        ans += same[i];
     }
-    
+
     cout << ans << endl;
-    
+
     return 0;
 }

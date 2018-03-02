@@ -85,5 +85,7 @@ docs/_build/
 target/
 
 # jupyter
-
 */.ipynb_checkpoints/
+
+# vscod
+**/.vscode/

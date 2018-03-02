@@ -14,7 +14,7 @@
 // 2. str[i]==str[j],                 j-i = 1
 // 3. str[i]==str[j] && dp[i+1][j-1], i-j > 1
 // 从递推公式可以看出来，在计算 dp 矩阵的时候，需要先判断长度短的子串是不是回文
-// 所以外层循环是，子串的长度，内层是字串开始位置
+// 所以外层循环是，子串的长度，内层是子串开始位置
 // 前提：dp[i][i] = true; dp[i][i+1] = (s[i] == s[i+1])
 
 // Manacher's Algorithm
@@ -41,8 +41,9 @@ string longestPalindrome(string s)
     int start = 0;   // 最长回文子串起点
 
     for (int len = 3; len <= n; ++ len)
-        for (int i = 0; i+len < n; ++ i)
+        for (int i = 0; i+len <= n; ++ i)
         {
+            int j = len + i -1;
             dp[i][j] = ( dp[i+1][j-1] && s[i]==s[j]);
 
             if (dp[i][j] && max_len < len)
@@ -52,11 +53,16 @@ string longestPalindrome(string s)
             }
         }
 
+    cout << start << endl;
+    cout << max_len << endl;
     return s.substr(start, max_len);
 }
 
 int main()
 {
+    string str;
+    cin >> str;
+    cout << longestPalindrome(str) << endl;
 
     return 0;
 }

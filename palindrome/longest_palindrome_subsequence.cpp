@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <cstdio>
 
 using namespace std;
@@ -17,18 +18,27 @@ int longestPalindromeSubSequence(string s)
 {
     const int n = s.size();
     int dp[n][n], tmp;
-    memset(dp,0,sizeof(dp));
-    for(int i=0; i<n; i++)
+    // memset(dp,0,sizeof(dp));
+    fill_n(&dp[0][0], n*n, 0);
+    for(int i=0; i<n-1; i++)
+    {
         dp[i][i] = 1;
+        if (s[i] == s[i+1])
+            dp[i][i+1] = 1;
+        else
+            dp[i][i+1] = 0;
+    }
+    dp[n-1][n-1] = 1;
 
     // len 子序列的长度
-    for(int len = 2; len <= n; ++ len)
-        for(int i = 0; i+len < n; ++ i)
+    for(int len = 3; len <= n; ++ len)
+        for(int i = 0; i+len <= n; ++ i)
         {
-            if (s[i] == s[i+len-1])
-                dp[i][i+len-1] = dp[i+1][i+len-2] + 2;
+            int j = i + len - 1;
+            if (s[i] == s[j])
+                dp[i][j] = dp[i+1][j-1] + 2;
             else
-                dp[i][i+len-1] = max(dp[i+1][i+len-1], dp[i][i+len-2]);
+                dp[i][j] = max(dp[i+1][j], dp[i][j-1]);
         }
 
     //返回串 str[0][n-1] 的结果

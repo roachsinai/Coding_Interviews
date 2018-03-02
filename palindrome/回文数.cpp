@@ -34,6 +34,7 @@ bool isPlalindrome(int num)
     {
         int l = num / div;
         int r = num % 10;
+        // 判断数字两端的数字是否相同
         if (l != r)
             return false;
 
@@ -45,6 +46,8 @@ bool isPlalindrome(int num)
 }
 
 // 递归解法（如果额外的栈空间不算额外空间）。
+// 通过对x提前除得到num的第一位，和最后一位相同的话，对y后除来判断第二位和倒数第二位是否相同
+// ...
 bool isPalindrome(int x, int &y)
 {
     if (x < 0)

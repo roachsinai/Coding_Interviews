@@ -1,4 +1,4 @@
-// arr 存放 每个矩阵的维度 第 i 个矩阵的维度为 arr[i-1] * a[i]，那么给定 arr 的大小: size，则举着个数有 size-1 个
+// arr 存放 每个矩阵的维度 第 i 个矩阵的维度为 arr[i-1] * a[i]，那么给定 arr 的大小: size，则矩阵个数有 size-1 个
 // M[i][j] 表示 A[i]A[i+1]...A[j] 的连乘最小代价
 // 那么，最终要求的是 A[1]A[2]...A[n-1] 即 M[1][n-1]
 
@@ -9,6 +9,7 @@ using namespace std;
 
 int MatrixChainOrder(int p[], int n)
 {
+    // 矩阵个数 n-1
     int M[n][n];
     int i, j, k, L, min;
 

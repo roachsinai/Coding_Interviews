@@ -8,7 +8,6 @@ using namespace std;
 const int N = 10;
 const int M = 12;
 bool b_isTraver[N][M];
-queue<axis> q;
 
 struct axis
 {
@@ -30,7 +29,7 @@ char g_field[N][M] =
     {'.','.','w','.','.','.','.','.','.','.','w','.'},
 };
 
-void get_con(){
+void get_con(queue<axis> &q){
     while (!q.empty())
     {
         for (int i = -1; i <= 1; ++ i)
@@ -68,6 +67,8 @@ int main(){
             b_isTraver[i][j] = false;
     }
 
+    queue<axis> q;
+
     for (i = 0; i < N; ++ i){
         for (j = 0; j < M; ++ j){
             if (!b_isTraver[i][j] && g_field[i][j] == 'w'){
@@ -80,7 +81,7 @@ int main(){
                 q.push(tmp);
 
                 b_isTraver[i][j] = true;
-                get_con();
+                get_con(q);
             }
         }
     }

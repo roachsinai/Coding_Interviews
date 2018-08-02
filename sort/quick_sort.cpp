@@ -1,6 +1,6 @@
-#include<iostream>
+#include <iostream>
 #include <vector>
-#include<algorithm>
+#include <algorithm>
 
 using namespace std;
 
@@ -35,7 +35,6 @@ int Partition(int data[], int length, int start, int end)
     }
 
     ++ small;
-
     swap(data[small], data[end]);
 
     return small;

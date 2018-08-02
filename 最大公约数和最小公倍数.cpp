@@ -1,4 +1,4 @@
-// 两个数的最小公倍数(Lowest Common Multiple) = 两个数的乘积 / 两个数的最小公倍数
+// 两个数的最小公倍数(Lowest Common Multiple) = 两个数的乘积 / 两个数的最大公约数
 
 // 在数论中，如果两个或两个以上的整数的最大公约数是 1，则称它们为互质
 // 最大公约数（英语：Greatest Common Divisor，简写为G.C.D.；或Highest Common Factor，简写为H.C.F.）
@@ -8,7 +8,7 @@
 
 // 求最大公约数：欧几里得法（辗转相除法）
 // 求a和b的最大公约数m
-// 我们直到 a = kb + r，可以表示任意两个整数之间的关系，且 a%m == b%m == 0，所以 r%m == 0
+// 我们知道 a = kb + r，可以表示任意两个整数之间的关系，且 a%m == b%m == 0，所以 r%m == 0
 // 也就是说 m 也是 b 和 r 的最大公约数
 
 #include <iostream>

@@ -29,7 +29,7 @@ void MergeArray(int a[], int start, int mid, int end, int temp[])
     while (t <= end)
         temp[i++] = a[t++];
 
-    for (t = 0; t < i; ++t)
+    for (t = 0; t < i; ++t) // start被修改了，只能从0开始
         a[t] = temp[t];
 }
 

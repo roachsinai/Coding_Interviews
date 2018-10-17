@@ -36,7 +36,7 @@
 
 那么，编程如何求`next`数组，即每个字串的最长公共元素长度呢？不，如何快速的求`next`数组呢？就是在求`next`数组的过程中，用到前面已经求得的`next`数组的信息。
 
-假设，当前已经求得的最长公共与元素长度为`k`的字串为`P[0]...p[q-1]`，其最长公共元素为：`P[0]...P[k-1]`，如图一所示：
+假设，当前已经求得的最长公共元素长度为`k`的字串为`P[0]...p[q-1]`，其最长公共元素为：`P[0]...P[k-1]`，如图一所示：
 
 ![](/img/kmp3.png)
 
@@ -110,7 +110,7 @@ void KMP(const string& str, const string& sub_str, int next[])
 
         if (j == sub_str.size())
             cout << "pattern begin from index " << i-j+1 << endl;
-        }
+    }
 }
 
 int main(){

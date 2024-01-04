@@ -49,3 +49,7 @@ int main()
 	return 0;
 }
 ```
+
+## refs
+
+1. [算法：1-N的最大奇数约数之和\_n+1 2n 最大奇因数 相加 n2-CSDN博客](https://blog.csdn.net/shuijinglingsos/article/details/103203649)

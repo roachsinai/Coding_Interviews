@@ -12,7 +12,7 @@ class PrimeNumber
     const static int MAX_NUM = 10000;
     int PRIMES[MAX_NUM];
     int m, n;
-public:    
+public:
     PrimeNumber()
     {
         memeset(PRIMES, 0, sizeof(PRIMES));

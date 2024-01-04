@@ -2,10 +2,10 @@
 
 ## [无名](https://stackoverflow.com/a/14371766/6074780)
 
-求$x$使得$x^2=n$，即求$x$使得$x=\frac{n}{x}$。
+求 $x$ 使得 $x^2=n$，即求 $x$ 使得 $x=\frac{n}{x}$。
 
-1. 猜测一个值$x$，然后测试$x^2$是不是足够接近$n$。
-2. 如果足够接近，返回$x$。否则，进行更好的猜测。
+1. 猜测一个值 $x$，然后测试 $x^2$ 是不是足够接近 $n$。
+2. 如果足够接近，返回 $x$。否则，进行更好的猜测。
 
 ```
 def sqrt(n, x):
@@ -24,10 +24,10 @@ def better_guess(n, x):
 需要注意的是，这种方法求很小的值的平方根由于`close_enough`函数的原因会出错：
 
 ```
-[ins] In [5]: sqrt(1E-36, 1)                                                                                              
+[ins] In [5]: sqrt(1E-36, 1)
 Out[5]: 7.62939453125e-06
 
-[ins] In [6]: math.sqrt(1E-36)                                                                                            
+[ins] In [6]: math.sqrt(1E-36)
 Out[6]: 9.999999999999999e-19
 ```
 
@@ -37,7 +37,7 @@ Out[6]: 9.999999999999999e-19
 
 ```
 def close_enough(a, b):
-    return (abs(a - b) / (max(abs(a), abs(b)))) < 1e-5
+    return (abs(a - b) / max(abs(a), abs(b))) < 1e-5
 ```
 
 ## 二分法

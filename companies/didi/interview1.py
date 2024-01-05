@@ -2,6 +2,7 @@ from collections import namedtuple
 from collections import deque
 
 Point = namedtuple('Point', 'x y')
+# namedtuple 返回一个类，类名以第一个参数命名
 
 g_field = [['w','.','.','.','.','.','.','.','.','w','w','.'],
            ['.','w','w','w','.','.','.','.','.','w','w','w'],

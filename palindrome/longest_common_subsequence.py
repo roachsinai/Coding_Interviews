@@ -10,7 +10,7 @@ def lcs(str1, str2):
                 v[i][j] = v[i-1][j-1] + 1
             else:
                 v[i][j] = max(v[i-1][j], v[i][j-1])
-    
+
     return v[len(str1)][len(str2)]
 
 def main():

@@ -5,12 +5,12 @@
 def is_plalindrome(num):
     if num < 0:
         return False
-    
+
     rev, x = 0, num
     while x != 0:
         rev = rev * 10 + x % 10
         x //= 10
-    
+
     return rev == num
 
 def main():
